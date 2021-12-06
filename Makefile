@@ -1,6 +1,6 @@
 CC=gcc
 TARGET=myos
-C_FILES=./kernel.c ./shell/console.c
+C_FILES=./kernel.c ./shell/console.c ./io/io.c
 OBJS=$(C_FILES:.c=.o)
 
 all compile: $(TARGET)
@@ -19,7 +19,7 @@ finale:
 	$(shell cp $(TARGET) ./iso/boot/$(TARGET))
 	$(shell grub2-mkrescue iso --output=$(TARGET).iso)
 	sudo cp ./myos.iso /var/www/html
-	sudo cp -r ./../myos.tar /var/www/html
+	sudo cp -r ./../my_os.tar.gz /var/www/html
 clean:
 	rm -f *.o $(TARGET) $(TARGET).iso
 	find . -name \*.o | xargs --no-run-if-empty rm
